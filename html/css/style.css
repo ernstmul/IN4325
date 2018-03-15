@@ -1,0 +1,4 @@
+body{margin: 0; padding: 0; border: 1px solid #000; float:left; width: calc(100% - 2px);}
+nav{background-color: #DDD; float: left; width: calc(100% - 20px); padding: 10px 10px; border-bottom: 1px solid #000;}
+
+.article{float: left; padding: 10px;}
