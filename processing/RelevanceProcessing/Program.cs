@@ -15,7 +15,7 @@ namespace RelevanceProcessing
         static void Main(string[] args)
         {
             Console.WriteLine($"Processing input file {FILE_INPUT}");
-            IEnumerable<string> lines = File.ReadLines(FILE_INPUT);
+            IEnumerable<string> lines = File.ReadAllLines(FILE_INPUT);
             Console.WriteLine($"Loaded {lines.Count()} lines");
             ICollection<string> output = new List<string>();
             foreach (string line in lines)
