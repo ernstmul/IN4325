@@ -36,11 +36,8 @@
 				//get the document ids 
 				$topic->getDocumentIds();
 			}
-
-			#4. we start with the first topic of the array, so increment this one already in the database
-			//TODO uncomment $this->database->incrementTopicCount($this->topics[0]->topicId, $this->topics[0]->precision);
-
-			#5. render the html page
+			
+			#4. render the html page
 			$this->renderPage();
 		}
 
@@ -61,6 +58,9 @@
 					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 					<script src="/script/DocumentMouseTracking.js"></script>
 					<script src="/script/mousetracker.js"></script>
+					<script>
+						var topics = <?php echo json_encode($this->topics); ?>;
+					</script>
 				</head>
 
 				<body>
@@ -70,8 +70,8 @@
 						<input type='button' value='Relevant' id='relevantButton'/> <input type='button' value='Not Relevant' id='notRelevantButton'/>
 						
 					</nav>
-					<section class='article'>
-						<?php echo json_encode($this->topics); ?>
+					<section class='article' id='articleArea'>
+						
 					</section>
 				</body>
 			</html>
