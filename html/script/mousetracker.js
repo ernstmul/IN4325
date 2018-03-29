@@ -161,7 +161,7 @@ function handleButtonClick(clickedRelevant){
 	//save to APONE - code snippet from https://github.com/marrerom/ClientE/blob/master/WebContent/js/search.js
 	var inputJson = new Object();
 		inputJson.idunit = idunit;
-		inputJson.idconfig = "5abd034f10801c2f2c6fe29f";
+		inputJson.idconfig = "5abd350510801c2f2c6fe2a1";
 		inputJson.etype = "JSON";
 		inputJson.ename = "relevanceClicked";
 		inputJson.evalue = JSON.parse(saveTracker);
