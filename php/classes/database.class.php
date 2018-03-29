@@ -65,4 +65,21 @@ class database{
 			$stmt->execute();
 		}
 
+		/*	saveMeasurement
+		*
+		*	save measurement in the database
+		*/
+		public function saveMeasurement($jsonstring, $timestamp){
+			//prepare the statement
+			$stmt = $this->handler->prepare("INSERT INTO `measurements` (`jsonstring`, `timestamp`) VALUES (:jsonstring, :timestamp)");
+
+			$stmt->bindParam(":jsonstring", $jsonstring);
+			$stmt->bindParam(":timestamp", $timestamp);
+
+			//execute
+			$stmt->execute();
+		}
+
+		
+
 	}

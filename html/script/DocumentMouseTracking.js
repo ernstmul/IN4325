@@ -5,9 +5,11 @@ class DocumentMouseTracking{
 		this.userId 	= userId;
 		this.documentId = null;
 		this.topicId 	= null;
+		this.decision 	= null;
 		this.viewportX	= window.innerWidth;
 		this.viewportY	= window.innerHeight;
 		this.tracking 	= new Array();
+		this.isSummary	= null;
 	}
 
 	/**

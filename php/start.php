@@ -59,13 +59,15 @@
 					<script src="/script/DocumentMouseTracking.js"></script>
 					<script src="/script/mousetracker.js"></script>
 					<script>
+						var idunit = <?php echo "'".(isset($_GET['_idunit']) ? $_GET['_idunit'] : "")."'"; ?>;
 						var topics = <?php echo json_encode($this->topics); ?>;
+
 					</script>
 				</head>
 
 				<body>
 					<nav>
-						Please judge the document below as relevant or not relevant to the search topic displayed on the right.
+						Please judge the document below as relevant or not relevant to the following search topic <span id='topic_name'></span>.
 						<br/><br/>
 						<input type='button' value='Relevant' id='relevantButton'/> <input type='button' value='Not Relevant' id='notRelevantButton'/>
 						
