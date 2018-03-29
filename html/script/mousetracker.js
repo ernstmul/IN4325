@@ -5,6 +5,9 @@ var showSummary = false;
 
 $( document ).ready(function() {
 
+	//alert the user with an explanation about the research
+	alert("Hello! Thanks for participating!\n\nYou'll be shown 4 different topics. Every topic is covered for 10 minutes (the system will automatically switch topic). Below the gray box you'll see an article (or part of it).\n\nPlease read the text in full, and use the buttons to decide if the article was relevant to the topic.")
+
 	//set the userid
 	tracker.userid = idunit;
 
@@ -34,21 +37,28 @@ $( document ).ready(function() {
 function switchTopic(){
 	// pick the topic
 	currentTopic = topics.shift();
+
+	if(currentTopic == null){
+		alert("You're done! Thanks for fully completing our research!");
+	}
+	else{
+		// add topic to the tracker
+		tracker.addTopicId(currentTopic.topicId);
+
+		// ping the server to increase the topic count
+		$.post( "/topicIncrease.php", { topicId: currentTopic.topicId, precision: currentTopic.precision} );
+
+		//display the topic name
+		displayTopicName(currentTopic.topicId);
+
+		// start a timer
+		setTimeout(function(){ switchTopic(); }, (10*60*1000)); //10 minutes in milliseconds
+
+		// show the next document of the topic
+		showNextDocument();
+	}
 	
-	// add topic to the tracker
-	tracker.addTopicId(currentTopic.topicId);
-
-	// ping the server to increase the topic count
-	$.post( "/topicIncrease.php", { topicId: currentTopic.topicId, precision: currentTopic.precision} );
-
-	//display the topic name
-	displayTopicName(currentTopic.topicId);
-
-	// start a timer
-	setTimeout(function(){ switchTopic(); }, (10*60*1000)); //10 minutes in milliseconds
-
-	// show the next document of the topic
-	showNextDocument();
+	
 }
 
 /**
@@ -58,33 +68,41 @@ function showNextDocument(){
 	//pick next document
 	var selected_document = currentTopic.documentIds.shift();
 
-	//get the document JSON
-	$.getJSON( "/docs/"+currentTopic.topicId+"/"+selected_document.relevance + "/" + selected_document.url, function( data ) {
-		var htmlText = "";
 
-		//determine the amount of paragraphs we're going to show (alternating summary or full document)
-		var maxParagraphs = data.Text.length;
-		if(showSummary && data.Text.length > 2){maxParagraphs = 2;}
+	if(selected_document == null){
+		//the user got through all documents for the topic within  10 minutes
+		switchTopic();
+	}
+	else{
 
-		for(var paragraphCount = 0; paragraphCount < maxParagraphs; paragraphCount++){
-			htmlText += "<p>" + data.Text[paragraphCount] + "</p>";
-		}
+		//get the document JSON
+		$.getJSON( "/docs/"+currentTopic.topicId+"/"+selected_document.relevance + "/" + selected_document.url, function( data ) {
+			var htmlText = "";
 
-		$("#articleArea").html(htmlText);
+			//determine the amount of paragraphs we're going to show (alternating summary or full document)
+			var maxParagraphs = data.Text.length;
+			if(showSummary && data.Text.length > 2){maxParagraphs = 2;}
 
-		//store if we selected a summary or not
-		tracker.isSummary = showSummary;
+			for(var paragraphCount = 0; paragraphCount < maxParagraphs; paragraphCount++){
+				htmlText += "<p>" + data.Text[paragraphCount] + "</p>";
+			}
 
-		//switch summary variable
-		showSummary = !showSummary;
+			$("#articleArea").html(htmlText);
 
-	});
+			//store if we selected a summary or not
+			tracker.isSummary = showSummary;
 
-	//reset the tracker
-	tracker.reset();
+			//switch summary variable
+			showSummary = !showSummary;
 
-	//add the documentId to the tracker
-	tracker.addDocumentId(selected_document.url);
+		});
+
+		//reset the tracker
+		tracker.reset();
+
+		//add the documentId to the tracker
+		tracker.addDocumentId(selected_document.url);
+	}
 
 }
 
