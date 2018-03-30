@@ -8,6 +8,8 @@
 		private $database;
 		private $topics;				//array with topics, containing the selected documents
 
+		private $idunit = "";
+
 		/**
 		*	create class
 		**/
@@ -25,9 +27,23 @@
 		*	Select topic, precision, accuracy, documents and show the interface
 		*/
 		public function run(){
-			#1. get the precision
-			$precision = isset($_GET['precision']) ? $_GET['precision'] : $this->getRandomPrecision();
+			#1. get the variable base64
+			$array_keys = array_keys($_GET);
+			if(isset($array_keys[0])){
+				//there is an APONE config set
+				$parts = explode("&",base64_decode($array_keys[0]));
 
+				foreach($parts as $part){
+					list($key, $val) = explode("=", $part);
+
+					if($key == "precision"){$precision = $val;}
+					else if($key == "_idunit"){$this->idunit = $val;}
+				}
+			}
+			else{
+				$precision = $this->getRandomPrecision();
+			}
+			
 			#2. get the 4 least used topics from the database
 			$this->topics = $this->database->getTopics($precision);
 
@@ -59,7 +75,7 @@
 					<script src="/script/DocumentMouseTracking.js"></script>
 					<script src="/script/mousetracker.js"></script>
 					<script>
-						var idunit = <?php echo "'".(isset($_GET['_idunit']) ? $_GET['_idunit'] : "")."'"; ?>;
+						var idunit = <?php echo "'".$this->idunit."'"; ?>;
 						var topics = <?php echo json_encode($this->topics); ?>;
 
 					</script>
