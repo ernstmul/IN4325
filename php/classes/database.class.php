@@ -11,7 +11,7 @@ class database{
 			$this->host = "127.0.0.1";
 			$this->databaseName = "IN4325"; 
 			$this->databaseUser = "IN4325";
-			$this->databasePassword = "4Qu9DaskfAEF6q2K";
+			$this->databasePassword = file_get_contents(__DIR__."/database.conf");
 			
 			try{
 				$this->handler = new PDO("mysql:host=".$this->host.";dbname=".$this->databaseName.";charset=utf8", $this->databaseUser, $this->databasePassword, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'")); 
