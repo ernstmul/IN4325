@@ -168,7 +168,7 @@ function handleButtonClick(clickedRelevant){
 	
 	var xhttp = getXMLHttpRequest();
 		
-		xhttp.open("POST", "http://ireplatform.ewi.tudelft.nl:8080/APONE/service/event/register");
+		xhttp.open("POST", "http://ireplatform.ewi.tudelft.nl:8080/IN4325/service/event/register");
 		xhttp.setRequestHeader("Content-Type", "text/plain");   //This same endpoint is also implemented to receive JSON, but if it is used
 		var inputTxt = JSON.stringify(inputJson);				//from the client-side as in this case, it may not work due to CORS (Cross-Origin Resource Sharing)
 		xhttp.send(inputTxt);
