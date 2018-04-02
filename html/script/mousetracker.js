@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	alert("Hello! Thanks for participating!\n\nYou'll be shown 4 different topics. Every topic is covered for 10 minutes (the system will automatically switch topic). Below the gray box you'll see an article (or part of it).\n\nPlease read the text in full, and use the buttons to decide if the article was relevant to the topic.")
 
 	//set the userid
-	tracker.userid = idunit;
+	tracker.userId = idunit;
 
 	//show topic
 	switchTopic();
