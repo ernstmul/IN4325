@@ -50,6 +50,64 @@ class database{
 			}
 		}
 
+		/*	getMeasurement
+		*
+		*	return the measurement information for a specific ID
+		*/
+		public function getMeasurement($measurementId){
+			//prepare the statement
+			$stmt = $this->handler->prepare("SELECT `jsonstring` FROM `measurements` WHERE `id`=:measurementId");
+
+			$stmt->bindParam(":measurementId", $measurementId);
+
+			//execute
+			if($stmt->execute()){
+				return json_decode($stmt->fetch(PDO::FETCH_ASSOC)['jsonstring'], true);
+				
+			}
+			else{
+				return "";
+			}
+		}
+
+		/*	getAllMeasurements
+		*
+		*	return the all measurements
+		*/
+		public function getAllMeasurements(){
+			//prepare the statement
+			$stmt = $this->handler->prepare("SELECT * FROM `measurements`");
+
+			//execute
+			if($stmt->execute()){
+				return $stmt->fetchAll(PDO::FETCH_ASSOC);
+				
+			}
+			else{
+				return array();
+			}
+		}
+
+		/*	getTopicName
+		*
+		*	return the name of the topic
+		*/
+		public function getTopicName($topicId){
+			//prepare the statement
+			$stmt = $this->handler->prepare("SELECT `title` FROM `topics` WHERE `topicId`=:topicId");
+
+			$stmt->bindParam(":topicId", $topicId);
+
+			//execute
+			if($stmt->execute()){
+				return $stmt->fetch(PDO::FETCH_ASSOC)['title'];
+				
+			}
+			else{
+				return "";
+			}
+		}
+
 		/*	incrementTopicCount
 		*
 		*	increment the topic count
