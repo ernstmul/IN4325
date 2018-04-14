@@ -45,8 +45,8 @@
 					$_POST['imageId'],
 					$_POST['documentId'],
 					$_POST['topicId'],
-					($_POST['isSummary'] == "false") ? false : true,
-					($_POST['userDecidedRelevant'] == "false") ? false : true,
+					($_POST['isSummary'] == "false") ? 0 : 1,
+					($_POST['userDecidedRelevant'] == "false") ? 0 : 1,
 					$_POST['articleIsRelevant'],
 					$labelString,
 					$judger
