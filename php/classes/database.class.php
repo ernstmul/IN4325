@@ -21,6 +21,28 @@ class database{
 
 		}
 
+		/* getJudgedIds
+		*
+		* 	return array with judged Ids
+		*/
+		public function getJudgedIds($judger){
+
+			//prepare the statement
+			$stmt = $this->handler->prepare("SELECT `imageId` FROM `judgements` WHERE `judger`=:judger");
+
+			$stmt->bindParam(":judger", $judger);
+
+			//execute
+			if($stmt->execute()){
+				return $stmt->fetchAll(PDO::FETCH_COLUMN);
+				
+			}
+			else{
+				return array();
+			}
+		
+		}
+
 
 		/*	getTopics
 		*
@@ -133,6 +155,26 @@ class database{
 
 			$stmt->bindParam(":jsonstring", $jsonstring);
 			$stmt->bindParam(":timestamp", $timestamp);
+
+			//execute
+			$stmt->execute();
+		}
+
+		/*	saveJudgement
+		*
+		*	save judgement in the database
+		*/
+		public function saveJudgement($imageId, $documentId, $topicId, $isSummary, $userDecidedRelevant, $articleIsRelevant, $labelString, $judger){
+			//prepare the statement
+			$stmt = $this->handler->prepare("INSERT INTO `judgements` (`imageId`, `documentId`, `topic`, `isSummary`,`userDecidedRelevant`,`articleDecidedRelevant`, `labels`, `judger`) VALUES (:imageId, :documentId, :topic, :isSummary, :userDecidedRelevant, :articleDecidedRelevant, :labelString, :judger)");
+			$stmt->bindParam(":imageId", $imageId);
+			$stmt->bindParam(":documentId", $documentId);
+			$stmt->bindParam(":topic", $topicId);
+			$stmt->bindParam(":isSummary", $isSummary);
+			$stmt->bindParam(":userDecidedRelevant", $userDecidedRelevant);
+			$stmt->bindParam(":articleDecidedRelevant", $articleIsRelevant);
+			$stmt->bindParam(":labelString", $labelString);
+			$stmt->bindParam(":judger", $judger);
 
 			//execute
 			$stmt->execute();
