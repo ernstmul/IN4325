@@ -1,0 +1,73 @@
+[{
+    "label": "decisionOnly",
+    "counts": {
+        "totalSummaries": 51,
+        "totalDocuments": 36,
+        "agreementDocuments": 27,
+        "agreementSummaries": 42
+    }
+}, {
+    "label": "noMovement",
+    "counts": {
+        "totalSummaries": 73,
+        "totalDocuments": 90,
+        "agreementDocuments": 90,
+        "agreementSummaries": 72
+    }
+}, {
+    "label": "reScoping",
+    "counts": {
+        "totalSummaries": 33,
+        "totalDocuments": 40,
+        "agreementDocuments": 24,
+        "agreementSummaries": 25
+    }
+}, {
+    "label": "horizontal",
+    "counts": {
+        "totalSummaries": 4,
+        "totalDocuments": 12,
+        "agreementDocuments": 1,
+        "agreementSummaries": 1
+    }
+}, {
+    "label": "vertical",
+    "counts": {
+        "totalSummaries": 0,
+        "totalDocuments": 16,
+        "agreementDocuments": 5,
+        "agreementSummaries": 0
+    }
+}, {
+    "label": "highlighting",
+    "counts": {
+        "totalSummaries": 4,
+        "totalDocuments": 12,
+        "agreementDocuments": 4,
+        "agreementSummaries": 1
+    }
+}, {
+    "label": "scrolling",
+    "counts": {
+        "totalSummaries": 0,
+        "totalDocuments": 16,
+        "agreementDocuments": 11,
+        "agreementSummaries": 0
+    }
+}, {
+    "label": "random",
+    "counts": {
+        "totalSummaries": 15,
+        "totalDocuments": 40,
+        "agreementDocuments": 23,
+        "agreementSummaries": 3
+    }
+}, {
+    "label": "",
+    "counts": {
+        "totalSummaries": 2,
+        "totalDocuments": 0,
+        "agreementDocuments": 0,
+        "agreementSummaries": 1
+    }
+}]
