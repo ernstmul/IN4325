@@ -35,6 +35,16 @@ function computeStatistics(data) {
             percentage: value / data.length,
         });
     }
+
+    var decisionOnly = res.find(element => element.label == "decisionOnly").count;
+    var noMovement = res.find(element => element.label == "noMovement").count;
+
+    res.push({
+        label: "noIndication",
+        count: decisionOnly + noMovement,
+        percentage: (decisionOnly + noMovement) / data.length,
+    })
+
     return res;
 }
 

@@ -35,6 +35,10 @@
         "label": "",
         "count": 1,
         "percentage": 0.0044444444444444444
+    }, {
+        "label": "noIndication",
+        "count": 183,
+        "percentage": 0.8133333333333334
     }],
     "documents": [{
         "label": "vertical",
@@ -72,5 +76,9 @@
         "label": "",
         "count": 2,
         "percentage": 0.008771929824561403
+    }, {
+        "label": "noIndication",
+        "count": 120,
+        "percentage": 0.5263157894736842
     }]
 }
