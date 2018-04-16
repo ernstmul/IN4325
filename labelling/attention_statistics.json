@@ -1,100 +1,100 @@
 {
     "summaries": [{
         "topic": 362,
-        "noIndication": 15,
+        "noIndication": 7,
         "total": 22,
-        "percentage": 0.6818181818181818
+        "percentage": 0.3181818181818182
     }, {
         "topic": 436,
-        "noIndication": 58,
+        "noIndication": 7,
         "total": 65,
-        "percentage": 0.8923076923076924
+        "percentage": 0.1076923076923077
     }, {
         "topic": 367,
-        "noIndication": 23,
+        "noIndication": 10,
         "total": 33,
-        "percentage": 0.696969696969697
+        "percentage": 0.30303030303030304
     }, {
         "topic": 336,
-        "noIndication": 9,
+        "noIndication": 3,
         "total": 12,
-        "percentage": 0.75
+        "percentage": 0.25
     }, {
         "topic": 310,
-        "noIndication": 21,
+        "noIndication": 8,
         "total": 29,
-        "percentage": 0.7241379310344828
+        "percentage": 0.27586206896551724
     }, {
         "topic": 426,
-        "noIndication": 18,
+        "noIndication": 4,
         "total": 22,
-        "percentage": 0.8181818181818182
+        "percentage": 0.18181818181818182
     }, {
         "topic": 427,
-        "noIndication": 33,
+        "noIndication": 2,
         "total": 35,
-        "percentage": 0.9428571428571428
+        "percentage": 0.05714285714285714
     }, {
         "topic": 383,
-        "noIndication": 4,
+        "noIndication": 3,
         "total": 7,
-        "percentage": 0.5714285714285714
+        "percentage": 0.42857142857142855
     }, {
         "topic": "Average",
-        "percentage": 0.7597126293246983
+        "percentage": 0.24028737067530173
     }, {
         "topic": "EntireSet",
-        "noIndication": 181,
+        "noIndication": 44,
         "total": 225,
-        "percentage": 0.8044444444444444
+        "percentage": 0.19555555555555557
     }],
     "documents": [{
         "topic": 336,
-        "noIndication": 3,
+        "noIndication": 8,
         "total": 11,
-        "percentage": 0.2727272727272727
+        "percentage": 0.7272727272727273
     }, {
         "topic": 383,
-        "noIndication": 1,
+        "noIndication": 7,
         "total": 8,
-        "percentage": 0.125
+        "percentage": 0.875
     }, {
         "topic": 367,
-        "noIndication": 8,
+        "noIndication": 25,
         "total": 33,
-        "percentage": 0.24242424242424243
+        "percentage": 0.7575757575757576
     }, {
         "topic": 426,
-        "noIndication": 8,
+        "noIndication": 14,
         "total": 22,
-        "percentage": 0.36363636363636365
+        "percentage": 0.6363636363636364
     }, {
         "topic": 427,
-        "noIndication": 31,
+        "noIndication": 6,
         "total": 37,
-        "percentage": 0.8378378378378378
+        "percentage": 0.16216216216216217
     }, {
         "topic": 310,
-        "noIndication": 9,
+        "noIndication": 21,
         "total": 30,
-        "percentage": 0.3
+        "percentage": 0.7
     }, {
         "topic": 362,
-        "noIndication": 6,
+        "noIndication": 15,
         "total": 21,
-        "percentage": 0.2857142857142857
+        "percentage": 0.7142857142857143
     }, {
         "topic": 436,
-        "noIndication": 53,
+        "noIndication": 13,
         "total": 66,
-        "percentage": 0.803030303030303
+        "percentage": 0.19696969696969696
     }, {
         "topic": "Average",
-        "percentage": 0.4037962881712881
+        "percentage": 0.5962037118287119
     }, {
         "topic": "EntireSet",
-        "noIndication": 119,
+        "noIndication": 109,
         "total": 228,
-        "percentage": 0.5219298245614035
+        "percentage": 0.4780701754385965
     }]
 }

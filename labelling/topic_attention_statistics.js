@@ -39,7 +39,7 @@ function computeStatistics(data) {
                 total: 0
             });
         }
-        var noIndicationVal = (noIndication(judgement.labels) ? 1 : 0);
+        var noIndicationVal = (noIndication(judgement.labels) ? 0 : 1);
         count = topicCounts.get(judgement.topic);
         topicCounts.set(judgement.topic, {
             noIndication: count.noIndication + noIndicationVal,
@@ -87,6 +87,9 @@ loadJSON(content => {
 
     var summaries = data.filter(element => element.isSummary == 1);
     var documents = data.filter(element => element.isSummary == 0);
+
+    console.log(summaries.length)
+    console.log(documents.length)
 
     var behaviour_percentages = {
         summaries: computeStatistics(summaries),
