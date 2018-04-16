@@ -119,23 +119,7 @@
 			//load already performed ids by judger
 			$performedIds = $this->database->getJudgedIds($judger);
 
-			//check if we need to perform labelOverps
-			$labelOverlapDifference = array_diff($division['labelOverlapIDs'], $performedIds);
-			$labelOverlapDifference = array_values($labelOverlapDifference);
-
-			if(count($labelOverlapDifference) > 0){
-				//not all overlap ids are checked, so return one of these
-				$random = rand(0, count($labelOverlapDifference) - 1);
-				if(!isset($labelOverlapDifference[$random])){
-					echo "Count: ".count($labelOverlapDifference)."\nrandom:".$random;
-
-					echo "\n\n";
-					echo print_r($labelOverlapDifference, true);
-					return;
-				}
-				return $this->prepareJudgement($labelOverlapDifference[$random], "labelOverlapIDs (to go:".(count($labelOverlapDifference) - 1).")");
-			}
-			else{
+			
 				//check for refineOverlapIds
 				$labelRefineOverlapDifference = array_diff($division['refineOverlapIDs'], $performedIds);
 				$labelRefineOverlapDifference = array_values($labelRefineOverlapDifference);
@@ -161,7 +145,7 @@
 					}
 				}
 
-			}
+			
 
 
 			return null;
