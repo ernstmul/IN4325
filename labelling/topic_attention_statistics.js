@@ -48,14 +48,37 @@ function computeStatistics(data) {
     }
     
     var res = [];
+    var total = 0;
+    var noIndicationTotal =  0;
     for (var [key, value] of topicCounts.entries()) {
         res.push({
             topic: key,
             noIndication: value.noIndication,
             total: value.total,
             percentage: value.noIndication / value.total,
-        })
+        });
+        total = total + value.total;
+        noIndicationTotal = noIndicationTotal + value.noIndication;
     }
+
+    var average = 0;
+    var topicCount = res.length;
+    for (var count of res) {
+        average = average + count.percentage;
+    }
+
+    res.push({
+        topic: "Average",
+        percentage: average / topicCount
+    });
+
+    res.push({
+        topic: "EntireSet",
+        noIndication: noIndicationTotal,
+        total: total,
+        percentage: noIndicationTotal / total,
+    });
+
     return res;
 }
 
