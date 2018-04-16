@@ -137,7 +137,7 @@
 
 					if(count($labelPersonalDifference) > 0){
 						//get a personal Id
-						return $this->prepareJudgement($personalIds[rand(0, count($personalIds) - 1)], "personal (to go:".(count($labelPersonalDifference) - 1).")");
+						return $this->prepareJudgement($labelPersonalDifference[rand(0, count($labelPersonalDifference) - 1)], "personal (to go:".(count($labelPersonalDifference) - 1).")");
 					}
 					else{
 						//user is done
