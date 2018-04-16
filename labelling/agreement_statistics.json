@@ -1,5 +1,29 @@
 {
     "counts": [{
+        "label": "noIndication",
+        "counts": {
+            "totalSummaries": 124,
+            "totalDocuments": 124,
+            "agreementDocuments": 117,
+            "agreementSummaries": 113
+        }
+    }, {
+        "label": "noIndicationSummaries",
+        "counts": {
+            "totalSummaries": 124,
+            "totalDocuments": 0,
+            "agreementDocuments": 0,
+            "agreementSummaries": 113
+        }
+    }, {
+        "label": "noIndicationDocuments",
+        "counts": {
+            "totalSummaries": 0,
+            "totalDocuments": 124,
+            "agreementDocuments": 117,
+            "agreementSummaries": 0
+        }
+    }, {
         "label": "decisionOnly",
         "counts": {
             "totalSummaries": 51,
@@ -73,6 +97,21 @@
         }
     }],
     "percentages": [{
+        "label": "noIndication",
+        "agreementPercentage": 0.9274193548387096,
+        "agreementTotal": 230,
+        "total": 248
+    }, {
+        "label": "noIndicationSummaries",
+        "agreementPercentage": 0.9112903225806451,
+        "agreementTotal": 113,
+        "total": 124
+    }, {
+        "label": "noIndicationDocuments",
+        "agreementPercentage": 0.9435483870967742,
+        "agreementTotal": 117,
+        "total": 124
+    }, {
         "label": "decisionOnly",
         "agreementPercentage": 0.7931034482758621,
         "agreementTotal": 69,
@@ -117,20 +156,5 @@
         "agreementPercentage": 0.5,
         "agreementTotal": 1,
         "total": 2
-    }, {
-        "label": "noIndication",
-        "agreementPercentage": 0.924,
-        "agreementTotal": 231,
-        "total": 250
-    }, {
-        "label": "noIndicationSummaries",
-        "agreementPercentage": 0.9193548387096774,
-        "agreementTotal": 114,
-        "total": 124
-    }, {
-        "label": "noIndicationDocuments",
-        "agreementPercentage": 0.9285714285714286,
-        "agreementTotal": 117,
-        "total": 126
     }]
 }

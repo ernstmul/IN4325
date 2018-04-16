@@ -30,36 +30,32 @@ function noIndication(labels) {
 }
 
 function computeStatistics(data) {
-    var labelCounts = new Map();
+    var topicCounts = new Map();
 
     for (var judgement of data) {
-        var labels = judgement.labels;
-
-        for (var label of labels) {
-            if (!labelCounts.get(label)) {
-                labelCounts.set(label, 0);
-            }
-            labelCounts.set(label, labelCounts.get(label) + 1);
+        if (!topicCounts.get(judgement.topic)) {
+            topicCounts.set(judgement.topic, {
+                noIndication: 0,
+                total: 0
+            });
         }
+        var noIndicationVal = (noIndication(judgement.labels) ? 1 : 0);
+        count = topicCounts.get(judgement.topic);
+        topicCounts.set(judgement.topic, {
+            noIndication: count.noIndication + noIndicationVal,
+            total: count.total + 1
+        })
     }
-
+    
     var res = [];
-    for (var [key, value] of labelCounts.entries()) {
+    for (var [key, value] of topicCounts.entries()) {
         res.push({
-            label: key,
-            count: value,
-            percentage: value / data.length,
-        });
+            topic: key,
+            noIndication: value.noIndication,
+            total: value.total,
+            percentage: value.noIndication / value.total,
+        })
     }
-
-    var noIndicationElements = data.filter(element => noIndication(element.labels));
-
-    res.push({
-        label: "noIndication",
-        count: noIndicationElements.length,
-        percentage: noIndicationElements.length / data.length,
-    })
-
     return res;
 }
 
@@ -77,6 +73,6 @@ loadJSON(content => {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(behaviour_percentages));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",     dataStr     );
-    dlAnchorElem.setAttribute("download", "behaviour_statistics.json");
+    dlAnchorElem.setAttribute("download", "attention_statistics.json");
     dlAnchorElem.click();
 });

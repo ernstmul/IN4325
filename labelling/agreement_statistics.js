@@ -13,6 +13,22 @@ function loadJSON(callback) {
         xobj.send(null);   
     }
 
+function noIndication(labels) {
+    if (labels.indexOf("noMovement") > -1) {
+        return true;
+    }
+    if (labels.indexOf("decisionOnly") > -1) {
+        var attentionIndication = ["horizontal", "vertical", "highlighting", "scrolling", "random"]
+        for (var label of attentionIndication) {
+            if (labels.indexOf(label) > -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
 loadJSON((content) => {
     var data = JSON.parse(content);
 
@@ -41,6 +57,27 @@ loadJSON((content) => {
 
     var labelCounts = new Map();
 
+    labelCounts.set("noIndication", {
+        totalSummaries: 0,
+        totalDocuments: 0,
+        agreementDocuments: 0,
+        agreementSummaries: 0,
+    });
+
+    labelCounts.set("noIndicationSummaries", {
+        totalSummaries: 0,
+        totalDocuments: 0,
+        agreementDocuments: 0,
+        agreementSummaries: 0,
+    });
+
+    labelCounts.set("noIndicationDocuments", {
+        totalSummaries: 0,
+        totalDocuments: 0,
+        agreementDocuments: 0,
+        agreementSummaries: 0,
+    });
+
     for (var [key, value] of map.entries()) {
         var labels = new Set(value[0].labels.concat(value[1].labels));
 
@@ -61,6 +98,28 @@ loadJSON((content) => {
             counts.agreementSummaries = counts.agreementSummaries + (value[0].isSummary > 0 ? agreement : 0);
             counts.agreementDocuments = counts.agreementDocuments + (value[0].isSummary > 0 ? 0 : agreement);
         }
+
+        if (noIndication(value[0].labels) || noIndication(value[1].labels)) {
+            var counts = labelCounts.get("noIndication");
+            var agreement = noIndication(value[0].labels) && noIndication(value[1].labels);
+            counts.totalSummaries = counts.totalSummaries + (value[0].isSummary > 0 ? 1 : 0);
+            counts.totalDocuments = counts.totalDocuments + (value[0].isSummary > 0 ? 0 : 1);
+            counts.agreementSummaries = counts.agreementSummaries + (value[0].isSummary > 0 ? agreement : 0);
+            counts.agreementDocuments = counts.agreementDocuments + (value[0].isSummary > 0 ? 0 : agreement);
+            if (value[0].isSummary) {
+                counts = labelCounts.get("noIndicationSummaries");
+                counts.totalSummaries = counts.totalSummaries + (value[0].isSummary > 0 ? 1 : 0);
+                counts.totalDocuments = counts.totalDocuments + (value[0].isSummary > 0 ? 0 : 1);
+                counts.agreementSummaries = counts.agreementSummaries + (value[0].isSummary > 0 ? agreement : 0);
+                counts.agreementDocuments = counts.agreementDocuments + (value[0].isSummary > 0 ? 0 : agreement);
+            } else {
+                counts = labelCounts.get("noIndicationDocuments");
+                counts.totalSummaries = counts.totalSummaries + (value[0].isSummary > 0 ? 1 : 0);
+                counts.totalDocuments = counts.totalDocuments + (value[0].isSummary > 0 ? 0 : 1);
+                counts.agreementSummaries = counts.agreementSummaries + (value[0].isSummary > 0 ? agreement : 0);
+                counts.agreementDocuments = counts.agreementDocuments + (value[0].isSummary > 0 ? 0 : agreement);
+            }
+        }
     }
 
     var counts = [];
@@ -79,30 +138,6 @@ loadJSON((content) => {
             total: count.counts.totalDocuments + count.counts.totalSummaries
         });
     }
-
-    var decisionOnly = counts.find(element => element.label == "decisionOnly").counts;
-    var noMovement = counts.find(element => element.label == "noMovement").counts;
-
-    percentages.push({
-        label: "noIndication",
-        agreementPercentage: (decisionOnly.agreementDocuments + decisionOnly.agreementSummaries + noMovement.agreementDocuments + noMovement.agreementSummaries) / (decisionOnly.totalDocuments + decisionOnly.totalSummaries + noMovement.totalDocuments + noMovement.totalSummaries),
-        agreementTotal: decisionOnly.agreementDocuments + decisionOnly.agreementSummaries + noMovement.agreementDocuments + noMovement.agreementSummaries,
-        total: decisionOnly.totalDocuments + decisionOnly.totalSummaries + noMovement.totalDocuments + noMovement.totalSummaries,
-    })
-
-    percentages.push({
-        label: "noIndicationSummaries",
-        agreementPercentage: (decisionOnly.agreementSummaries + noMovement.agreementSummaries) / (decisionOnly.totalSummaries + noMovement.totalSummaries),
-        agreementTotal: decisionOnly.agreementSummaries + noMovement.agreementSummaries,
-        total: decisionOnly.totalSummaries + noMovement.totalSummaries
-    })
-
-    percentages.push({
-        label: "noIndicationDocuments",
-        agreementPercentage: (decisionOnly.agreementDocuments + noMovement.agreementDocuments) / (decisionOnly.totalDocuments + noMovement.totalDocuments),
-        agreementTotal: decisionOnly.agreementDocuments + noMovement.agreementDocuments,
-        total: decisionOnly.totalDocuments + noMovement.totalDocuments
-    })
 
     var statistics = {
         counts: counts,
