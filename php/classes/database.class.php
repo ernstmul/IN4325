@@ -130,6 +130,26 @@ class database{
 			}
 		}
 
+		/*	getJudgementForImage
+		*
+		*	return the judgement for image
+		*/
+		public function getJudgementForImage($imageId){
+			//prepare the statement
+			$stmt = $this->handler->prepare("SELECT * FROM `judgements` WHERE `imageId`=:imageId");
+
+			$stmt->bindParam(":imageId", $imageId);
+
+			//execute
+			if($stmt->execute()){
+				return $stmt->fetchAll(PDO::FETCH_ASSOC);
+				
+			}
+			else{
+				return "";
+			}
+		}
+
 		/*	incrementTopicCount
 		*
 		*	increment the topic count
